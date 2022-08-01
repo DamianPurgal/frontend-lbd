@@ -8,6 +8,7 @@ import {MatInputModule} from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
 import {MatListModule} from '@angular/material/list';
 import { TodoItemComponentComponent } from './todo-item-component/todo-item-component.component';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { TodoItemComponentComponent } from './todo-item-component/todo-item-comp
     BrowserAnimationsModule,
     MatButtonModule,
     MatInputModule,
-    MatListModule
+    MatListModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]
