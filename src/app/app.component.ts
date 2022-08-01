@@ -1,4 +1,5 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Todo } from './todo';
 import { TodosService } from './todos.service';
 
 @Component({
@@ -13,7 +14,11 @@ export class AppComponent {
   newTaskInputElement!: ElementRef<HTMLInputElement>;
   
   addElementToList(){
-    this.todoService.addToDoElement(this.newTaskInputElement.nativeElement.value);
+    let newElement: Todo = {
+      name: this.newTaskInputElement.nativeElement.value,
+      done: false
+    }
+    this.todoService.addToDoElement(newElement);
     this.newTaskInputElement.nativeElement.value = "";
     this.newTaskInputElement.nativeElement.focus();
     console.log(this.todoService.getToDoList());

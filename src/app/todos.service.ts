@@ -1,16 +1,17 @@
 import { Injectable, ViewChild } from '@angular/core';
+import { Todo } from './todo';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TodosService {
-  private toDos: string[] = [];
+  private toDos: Todo[] = [];
 
-  addToDoElement(element: string){
-    if(element == "" || element == undefined){
-      return;
-    }else{
+  addToDoElement(element: Todo){
+    if(this.isElementCorrect(element)){
       this.toDos.push(element);
+    }else{
+      return;
     }
   }
 
@@ -18,5 +19,17 @@ export class TodosService {
     return this.toDos;
   }
 
+  isElementCorrect(element: Todo){
+    if(element == undefined){
+      return false;
+    }
+    if(element.name == ""){
+      return false;
+    }
+    if(element.name == undefined){
+      return false;
+    }
+    return true;
+  }
   constructor() { }
 }

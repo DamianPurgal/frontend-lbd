@@ -7,8 +7,11 @@
   </mat-form-field>
 
   <button mat-button color="primary" (click)="addElementToList()">Add</button>
+
   <mat-list role="list">
-    <mat-list-item role="listitem" *ngFor="let item of getListOfElements()" >{{item}}</mat-list-item>
+    <mat-list-item role="listitem" *ngFor="let element of getListOfElements()"> 
+      <app-todo-item-component  [todoElement]="element" ></app-todo-item-component>
+    </mat-list-item>
   </mat-list>
 </div>
 
