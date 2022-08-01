@@ -16,6 +16,11 @@ export class AppComponent {
     this.todoService.addToDoElement(this.newTaskInputElement.nativeElement.value);
     this.newTaskInputElement.nativeElement.value = "";
     this.newTaskInputElement.nativeElement.focus();
+    console.log(this.todoService.getToDoList());
+  }
+
+  getListOfElements(){
+    return this.todoService.getToDoList();
   }
 
   constructor(private todoService: TodosService){}
