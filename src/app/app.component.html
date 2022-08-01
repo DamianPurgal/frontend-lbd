@@ -3,8 +3,8 @@
 <div style="margin-left:5%; margin-top:5%;">
   <mat-form-field class="example-full-width" appearance="fill">
     <mat-label>Nazwa taska</mat-label>
-    <input matInput placeholder="" value="">
+    <input matInput placeholder="" value="" #newTaskInput>
   </mat-form-field>
 
-  <button mat-button color="primary">Add</button>
+  <button mat-button color="primary" (click)="addElementToList()">Add</button>
 </div>
