@@ -5,42 +5,42 @@ import { Todo } from './todo';
   providedIn: 'root'
 })
 export class TodosService {
-  private toDos: Todo[] = [];
+  private tasks: Todo[] = [];
 
-  addToDoElement(element: Todo){
-    if(this.isElementCorrect(element)){
-      this.toDos.push(element);
+  addTask(task: Todo){
+    if(this.isTaskCorrect(task)){
+      this.tasks.push(task);
     }else{
       return;
     }
   }
 
-  removeToDoElement(elementToDelete: Todo){
-    let index = this.toDos.indexOf(elementToDelete);
+  removeTask(taskToDelete: Todo){
+    let index = this.tasks.indexOf(taskToDelete);
     if(index !== -1) {
-      this.toDos.splice(index, 1);
+      this.tasks.splice(index, 1);
     }
   }
 
   getToDoList(){
-    return this.toDos;
+    return this.tasks;
   }
 
-  setTodoElementDoneStatus(elementToEdit: Todo, doneStatus: boolean){
-    let index = this.toDos.indexOf(elementToEdit);
+  setTaskDoneStatus(taskToEdit: Todo, doneStatus: boolean){
+    let index = this.tasks.indexOf(taskToEdit);
     if(index !== -1) {
-      this.toDos[index].done = doneStatus;
+      this.tasks[index].done = doneStatus;
     }
   }
 
-  private isElementCorrect(element: Todo){
-    if(element == undefined){
+  private isTaskCorrect(task: Todo){
+    if(task == undefined){
       return false;
     }
-    if(element.name == ""){
+    if(task.name == ""){
       return false;
     }
-    if(element.name == undefined){
+    if(task.name == undefined){
       return false;
     }
     return true;

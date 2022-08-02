@@ -1,4 +1,4 @@
-#todoCheckBox{
+#doneCheckBox{
     border-radius:50%;
     border-color: black;
     border-style: solid;
@@ -9,7 +9,7 @@
     vertical-align: middle;
     cursor:pointer;
 }
-#todoCheckBoxIcon{
+#doneCheckBoxIcon{
     font-size:26px;
     width: 26px;
     height: 26px;
@@ -26,13 +26,13 @@
     overflow: hidden;
     white-space: nowrap;
 }
-#todoRemoveButton{
+#removeButton{
     width:26px;
     height:26px;
     display:inline-flex;
     vertical-align: middle;
 }
-#todoRemoveIcon{
+#removeIcon{
     font-size:26px;
     color:rgb(199, 61, 61);
     cursor:pointer;

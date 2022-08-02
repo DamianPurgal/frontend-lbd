@@ -1,13 +1,13 @@
-<mat-list-item role="listitem" > 
-    <div id="elementOfList">
-        <div #todoCheckBox id="todoCheckBox" (mouseenter)="checkBoxMouseEnter()" (mouseleave)="checkBoxMouseLeave()" (click)="checkBoxClicked()">
-            <mat-icon aria-hidden="false" aria-label="done checkbox" fontIcon="done" id="todoCheckBoxIcon"></mat-icon>
+<mat-list-item role="listitem"> 
+    <div>
+        <div #doneCheckBox id="doneCheckBox" (mouseenter)="checkBoxMouseEnter()" (mouseleave)="checkBoxMouseLeave()" (click)="checkBoxClicked()">
+            <mat-icon aria-hidden="false" aria-label="done checkbox" fontIcon="done" id="doneCheckBoxIcon"></mat-icon>
         </div>
         <div id="elementText">
-            {{todoElement.name}}
+            {{todoTask.name}}
         </div>
-        <div id="todoRemoveButton" (click)="emitTaskToDelete()">
-            <mat-icon aria-hidden="false" aria-label="remove checkbox" fontIcon="close" id="todoRemoveIcon"></mat-icon>
+        <div id="removeButton" (click)="emitTaskToDelete()">
+            <mat-icon aria-hidden="false" aria-label="remove checkbox" fontIcon="delete" id="removeIcon" title="usun element"></mat-icon>
         </div>
     </div>
 </mat-list-item>

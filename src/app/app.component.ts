@@ -14,27 +14,27 @@ export class AppComponent {
   @ViewChild('newTaskInput') 
   newTaskInputElement!: ElementRef<HTMLInputElement>;
   
-  addElementToList(){
-    let newElement: Todo = {
+  addTaskToList(){
+    let newTask: Todo = {
       name: this.newTaskInputElement.nativeElement.value,
       done: false
     }
-    this.todoService.addToDoElement(newElement);
+    this.todoService.addTask(newTask);
     this.newTaskInputElement.nativeElement.value = "";
     this.newTaskInputElement.nativeElement.focus();
     console.log(this.todoService.getToDoList());
   }
 
-  getListOfElements(){
+  getToDoList(){
     return this.todoService.getToDoList();
   }
 
   onDeleteTask(taskToDelete: Todo){
-    this.todoService.removeToDoElement(taskToDelete);
+    this.todoService.removeTask(taskToDelete);
   }
 
-  onEditTaskDoneStatus(elementToEdit: TodoEditDoneStatus){
-    this.todoService.setTodoElementDoneStatus(elementToEdit.todoElement, elementToEdit.done);
+  onEditTaskDoneStatus(taskToEdit: TodoEditDoneStatus){
+    this.todoService.setTaskDoneStatus(taskToEdit.todoElement, taskToEdit.done);
   }
 
   constructor(private todoService: TodosService){}
