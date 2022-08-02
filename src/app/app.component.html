@@ -1,16 +1,26 @@
-<div style="margin-left:5%; margin-top:5%;">
+<div id="todoList">
 
-  <mat-form-field class="example-full-width" appearance="fill">
-    <mat-label>Nazwa taska</mat-label>
-    <input matInput placeholder="" value="" #newTaskInput>
-  </mat-form-field>
+  <div id="taskAddForm">
+    <mat-form-field class="example-full-width" appearance="fill" id="taskNameInputContainer">
+      <mat-label>Nazwa taska</mat-label>
+      <input matInput placeholder="" value="" id="taskNameInput" #newTaskInput>
+    </mat-form-field>
 
-  <button mat-button color="primary" (click)="addTaskToList()">Add</button>
+    <div id="buttonAddTaskContainer">
+      <button mat-button color="primary" (click)="addTaskToList()" id="buttonAddTask">Add</button>
+    </div>
+  </div>
 
-  <mat-list role="list">
-    <app-todo-item-component *ngFor="let element of getToDoList() | doneTasksFilter" [todoTask]="element" (editTaskDoneStatus)="onEditTaskDoneStatus($event)" (deleteTask)="onDeleteTask($event)" >
+  <div id="taskList">
+    <div id="taskListHeader">
+      Lista zadań
+    </div>
+    <mat-divider id="taskListHeaderDivider"></mat-divider>
+    <mat-list role="list">
+      <app-todo-item-component *ngFor="let element of getToDoList() | doneTasksFilter" [todoTask]="element" (editTaskDoneStatus)="onEditTaskDoneStatus($event)" (deleteTask)="onDeleteTask($event)" >
 
-    </app-todo-item-component>
-  </mat-list>
+      </app-todo-item-component>
+    </mat-list>
+  </div>
 </div>
 
