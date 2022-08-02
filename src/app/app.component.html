@@ -1,5 +1,5 @@
 <div style="margin-left:5%; margin-top:5%;">
-  
+
   <mat-form-field class="example-full-width" appearance="fill">
     <mat-label>Nazwa taska</mat-label>
     <input matInput placeholder="" value="" #newTaskInput>
@@ -8,7 +8,7 @@
   <button mat-button color="primary" (click)="addTaskToList()">Add</button>
 
   <mat-list role="list">
-    <app-todo-item-component *ngFor="let element of getToDoList()" [todoTask]="element" (editTaskDoneStatus)="onEditTaskDoneStatus($event)" (deleteTask)="onDeleteTask($event)" >
+    <app-todo-item-component *ngFor="let element of getToDoList() | doneTasksFilter" [todoTask]="element" (editTaskDoneStatus)="onEditTaskDoneStatus($event)" (deleteTask)="onDeleteTask($event)" >
 
     </app-todo-item-component>
   </mat-list>

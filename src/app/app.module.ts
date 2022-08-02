@@ -9,11 +9,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatListModule} from '@angular/material/list';
 import { TodoItemComponentComponent } from './todo-item-component/todo-item-component.component';
 import {MatIconModule} from '@angular/material/icon';
+import { DoneTasksFilterPipe } from './done-tasks-filter.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TodoItemComponentComponent
+    TodoItemComponentComponent,
+    DoneTasksFilterPipe
   ],
   imports: [
     BrowserModule,
