@@ -10,12 +10,15 @@ import {MatListModule} from '@angular/material/list';
 import { TodoItemComponentComponent } from './todo-item-component/todo-item-component.component';
 import {MatIconModule} from '@angular/material/icon';
 import { DoneTasksFilterPipe } from './done-tasks-filter.pipe';
+import { TodoTooltipDirective } from './todo-tooltip.directive';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
     AppComponent,
     TodoItemComponentComponent,
-    DoneTasksFilterPipe
+    DoneTasksFilterPipe,
+    TodoTooltipDirective
   ],
   imports: [
     BrowserModule,
@@ -23,7 +26,8 @@ import { DoneTasksFilterPipe } from './done-tasks-filter.pipe';
     MatButtonModule,
     MatInputModule,
     MatListModule,
-    MatIconModule
+    MatIconModule,
+    MatTooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent]

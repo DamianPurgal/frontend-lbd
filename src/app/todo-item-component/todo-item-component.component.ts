@@ -35,7 +35,7 @@ export class TodoItemComponentComponent implements OnInit {
   }
 
   checkBoxClicked(){
-    this.editTaskDoneStatus.emit({todoElement: this.todoTask, done: !this.todoTask.done});
+    this.editTaskDoneStatus.emit({todoElement: this.todoTask, done: !this.todoTask.done, doneCreated: new Date()});
 
     if(this.todoTask.done){
       this.checkBoxElement.nativeElement.style.backgroundColor = this.CHECKBOX_COLOR_DONE;

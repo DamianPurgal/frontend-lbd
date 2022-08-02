@@ -1,10 +1,10 @@
 <mat-list-item role="listitem"> 
-    <div>
+    <div id="listElement">
         <div #doneCheckBox id="doneCheckBox" (mouseenter)="checkBoxMouseEnter()" (mouseleave)="checkBoxMouseLeave()" (click)="checkBoxClicked()">
             <mat-icon aria-hidden="false" aria-label="done checkbox" fontIcon="done" id="doneCheckBoxIcon"></mat-icon>
         </div>
-        <div id="elementText">
-            {{todoTask.name}}
+        <div id="elementTextBox" >
+            <p id="elementText" appTodoTooltip [date]="this.todoTask.doneCreated" [done]="this.todoTask.done" >{{todoTask.name}}</p>
         </div>
         <div id="removeButton" (click)="emitTaskToDelete()">
             <mat-icon aria-hidden="false" aria-label="remove checkbox" fontIcon="delete" id="removeIcon" title="usun element"></mat-icon>

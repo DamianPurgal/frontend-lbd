@@ -26,10 +26,15 @@ export class TodosService {
     return this.tasks;
   }
 
-  setTaskDoneStatus(taskToEdit: Todo, doneStatus: boolean){
+  setTaskDoneStatus(taskToEdit: Todo, doneStatus: boolean, doneDate: Date){
     let index = this.tasks.indexOf(taskToEdit);
     if(index !== -1) {
       this.tasks[index].done = doneStatus;
+      if(doneStatus){
+        this.tasks[index].doneCreated = doneDate;
+      }else{
+        this.tasks[index].doneCreated = undefined;
+      }
     }
   }
 

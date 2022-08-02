@@ -17,7 +17,8 @@ export class AppComponent {
   addTaskToList(){
     let newTask: Todo = {
       name: this.newTaskInputElement.nativeElement.value,
-      done: false
+      done: false,
+      doneCreated: undefined
     }
     this.todoService.addTask(newTask);
     this.newTaskInputElement.nativeElement.value = "";
@@ -34,7 +35,7 @@ export class AppComponent {
   }
 
   onEditTaskDoneStatus(taskToEdit: TodoEditDoneStatus){
-    this.todoService.setTaskDoneStatus(taskToEdit.todoElement, taskToEdit.done);
+    this.todoService.setTaskDoneStatus(taskToEdit.todoElement, taskToEdit.done, taskToEdit.doneCreated);
   }
 
   constructor(private todoService: TodosService){}
