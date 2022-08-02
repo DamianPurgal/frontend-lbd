@@ -1,34 +1,13 @@
-<div id="elementOfList">
-    <div #todoCheckBox id="todoCheckBox" (mouseenter)="checkBoxMouseEnter()" (mouseleave)="checkBoxMouseLeave()" (click)="checkBoxClicked()">
-        <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="done" id="todoCheckBoxIcon"></mat-icon>
+<mat-list-item role="listitem" > 
+    <div id="elementOfList">
+        <div #todoCheckBox id="todoCheckBox" (mouseenter)="checkBoxMouseEnter()" (mouseleave)="checkBoxMouseLeave()" (click)="checkBoxClicked()">
+            <mat-icon aria-hidden="false" aria-label="done checkbox" fontIcon="done" id="todoCheckBoxIcon"></mat-icon>
+        </div>
+        <div id="elementText">
+            {{todoElement.name}}
+        </div>
+        <div id="todoRemoveButton" (click)="emitTaskToDelete()">
+            <mat-icon aria-hidden="false" aria-label="remove checkbox" fontIcon="close" id="todoRemoveIcon"></mat-icon>
+        </div>
     </div>
-    <div id="elementText">
-        {{todoElement.name}}
-    </div>
-</div>
-
-<style>
-#todoCheckBox{
-    border-radius:50%;
-    border-color: black;
-    border-style: solid;
-    border-width: 2px;
-    width:26px;
-    height:26px;
-    display:inline-flex;
-    vertical-align: middle;
-}
-#todoCheckBoxIcon{
-    font-size:26px;
-    width: 26px;
-    height: 26px;
-    color:white;
-}
-#elementText{
-    font-size:26px;
-    display:inline-flex;
-    vertical-align: middle;
-    line-height: 100%;
-    margin-left:10px;
-}
-</style>
+</mat-list-item>

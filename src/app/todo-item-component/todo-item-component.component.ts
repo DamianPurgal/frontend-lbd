@@ -1,5 +1,6 @@
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { Todo } from '../todo';
+import { TodoEditDoneStatus } from '../todo-edit-done-status';
 
 @Component({
   selector: 'app-todo-item-component',
@@ -13,6 +14,10 @@ export class TodoItemComponentComponent implements OnInit {
   @ViewChild('todoCheckBox') 
   checkBoxElement!: ElementRef<HTMLSpanElement>;
 
+  @Output('deleteTask') deleteTask = new EventEmitter<Todo>();
+
+  @Output('editTaskDoneStatus') editTaskDoneStatus = new EventEmitter<TodoEditDoneStatus>();
+
   CHECKBOX_COLOR_DONE: string = 'rgb(79, 159, 67)';
   CHECKBOX_COLOR_NOT_DONE: string = 'white';
   CHECKBOX_COLOR_DONE_HOVER: string = 'orange';
@@ -22,17 +27,34 @@ export class TodoItemComponentComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  
+  emitTaskToDelete(){
+    this.deleteTask.emit(this.todoElement);
+  }
 
   checkBoxClicked(){
-    this.todoElement.done = !this.todoElement.done;
-    this.checkBoxElement.nativeElement.style.backgroundColor = this.todoElement.done ? this.CHECKBOX_COLOR_DONE : this.CHECKBOX_COLOR_NOT_DONE;
+    this.editTaskDoneStatus.emit({todoElement: this.todoElement, done: !this.todoElement.done});
+
+    if(this.todoElement.done){
+      this.checkBoxElement.nativeElement.style.backgroundColor = this.CHECKBOX_COLOR_DONE;
+    }else{
+      this.checkBoxElement.nativeElement.style.backgroundColor = this.CHECKBOX_COLOR_NOT_DONE;
+    }
   }
 
   checkBoxMouseEnter(){
-    this.checkBoxElement.nativeElement.style.backgroundColor = this.todoElement.done ?  this.CHECKBOX_COLOR_DONE_HOVER: this.CHECKBOX_COLOR_NOT_DONE_HOVER;
+    if(this.todoElement.done){
+      this.checkBoxElement.nativeElement.style.backgroundColor = this.CHECKBOX_COLOR_DONE_HOVER;
+    }else{
+      this.checkBoxElement.nativeElement.style.backgroundColor = this.CHECKBOX_COLOR_NOT_DONE_HOVER;
+    }
   }
 
   checkBoxMouseLeave(){
-    this.checkBoxElement.nativeElement.style.backgroundColor = this.todoElement.done ? this.CHECKBOX_COLOR_DONE : this.CHECKBOX_COLOR_NOT_DONE;
+    if( this.todoElement.done){
+      this.checkBoxElement.nativeElement.style.backgroundColor =this.CHECKBOX_COLOR_DONE
+    }else{
+      this.checkBoxElement.nativeElement.style.backgroundColor =this.CHECKBOX_COLOR_NOT_DONE
+    }
   }
 }

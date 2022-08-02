@@ -1,0 +1,39 @@
+#todoCheckBox{
+    border-radius:50%;
+    border-color: black;
+    border-style: solid;
+    border-width: 2px;
+    width:26px;
+    height:26px;
+    display:inline-flex;
+    vertical-align: middle;
+    cursor:pointer;
+}
+#todoCheckBoxIcon{
+    font-size:26px;
+    width: 26px;
+    height: 26px;
+    color:white;
+}
+#elementText{
+    font-size:26px;
+    display:inline-flex;
+    vertical-align: middle;
+    line-height: 100%;
+    margin-left:10px;
+    margin-right:10px;
+    width:250px;
+    overflow: hidden;
+    white-space: nowrap;
+}
+#todoRemoveButton{
+    width:26px;
+    height:26px;
+    display:inline-flex;
+    vertical-align: middle;
+}
+#todoRemoveIcon{
+    font-size:26px;
+    color:rgb(199, 61, 61);
+    cursor:pointer;
+}

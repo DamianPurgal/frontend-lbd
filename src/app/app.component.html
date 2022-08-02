@@ -1,5 +1,3 @@
-
-
 <div style="margin-left:5%; margin-top:5%;">
   <mat-form-field class="example-full-width" appearance="fill">
     <mat-label>Nazwa taska</mat-label>
@@ -9,9 +7,9 @@
   <button mat-button color="primary" (click)="addElementToList()">Add</button>
 
   <mat-list role="list">
-    <mat-list-item role="listitem" *ngFor="let element of getListOfElements()"> 
-      <app-todo-item-component [todoElement]="element"></app-todo-item-component>
-    </mat-list-item>
+    <app-todo-item-component *ngFor="let element of getListOfElements()" [todoElement]="element" (editTaskDoneStatus)="onEditTaskDoneStatus($event)" (deleteTask)="onDeleteTask($event)" >
+
+    </app-todo-item-component>
   </mat-list>
 </div>
 

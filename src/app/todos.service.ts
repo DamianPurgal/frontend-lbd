@@ -15,11 +15,25 @@ export class TodosService {
     }
   }
 
+  removeToDoElement(elementToDelete: Todo){
+    let index = this.toDos.indexOf(elementToDelete);
+    if(index !== -1) {
+      this.toDos.splice(index, 1);
+    }
+  }
+
   getToDoList(){
     return this.toDos;
   }
 
-  isElementCorrect(element: Todo){
+  setTodoElementDoneStatus(elementToEdit: Todo, doneStatus: boolean){
+    let index = this.toDos.indexOf(elementToEdit);
+    if(index !== -1) {
+      this.toDos[index].done = doneStatus;
+    }
+  }
+
+  private isElementCorrect(element: Todo){
     if(element == undefined){
       return false;
     }

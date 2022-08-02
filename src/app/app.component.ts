@@ -1,5 +1,6 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Todo } from './todo';
+import { TodoEditDoneStatus } from './todo-edit-done-status';
 import { TodosService } from './todos.service';
 
 @Component({
@@ -26,6 +27,14 @@ export class AppComponent {
 
   getListOfElements(){
     return this.todoService.getToDoList();
+  }
+
+  onDeleteTask(taskToDelete: Todo){
+    this.todoService.removeToDoElement(taskToDelete);
+  }
+
+  onEditTaskDoneStatus(elementToEdit: TodoEditDoneStatus){
+    this.todoService.setTodoElementDoneStatus(elementToEdit.todoElement, elementToEdit.done);
   }
 
   constructor(private todoService: TodosService){}
