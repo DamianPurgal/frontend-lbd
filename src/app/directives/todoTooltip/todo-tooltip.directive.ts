@@ -12,18 +12,18 @@ export class TodoTooltipDirective {
   @Input() done!: boolean;
 
   constructor(private elementRef: ElementRef, private tooltip: MatTooltip) { }
-  
+
   @HostListener('mouseover') mouseover() {
     if(this.done == true){
       if(this.date != undefined){
-        this.tooltip.message = "Zrobione dnia: " 
+        this.tooltip.message = "Zrobione dnia: "
         + this.date.toLocaleDateString('default', {month: 'short'}) + " "
         + this.date.toLocaleDateString('default', {day: '2-digit'}) + ", "
         + this.date.toLocaleDateString('default', {year: 'numeric'});
       }
       this.tooltip.show();
     }
-    
+
 }
   @HostListener('mouseleave') mouseleave() {
       this.tooltip.hide();

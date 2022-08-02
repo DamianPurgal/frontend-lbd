@@ -1,7 +1,7 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { Todo } from './todo';
-import { TodoEditDoneStatus } from './todo-edit-done-status';
-import { TodosService } from './todos.service';
+import { Todo } from './interfaces/todo';
+import { TodoEditDoneStatus } from './interfaces/todo-edit-done-status';
+import { TodosService } from './services/todoService/todos.service';
 
 @Component({
   selector: 'app-root',
@@ -11,9 +11,9 @@ import { TodosService } from './todos.service';
 export class AppComponent {
   title = 'frontend-lbd';
 
-  @ViewChild('newTaskInput') 
+  @ViewChild('newTaskInput')
   newTaskInputElement!: ElementRef<HTMLInputElement>;
-  
+
   addTaskToList(){
     let newTask: Todo = {
       name: this.newTaskInputElement.nativeElement.value,

@@ -1,6 +1,6 @@
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { Todo } from '../todo';
-import { TodoEditDoneStatus } from '../todo-edit-done-status';
+import { Todo } from '../interfaces/todo';
+import { TodoEditDoneStatus } from '../interfaces/todo-edit-done-status';
 
 @Component({
   selector: 'app-todo-item-component',
@@ -11,13 +11,13 @@ export class TodoItemComponentComponent implements OnInit {
 
   @Input() todoTask!: Todo;
 
-  @ViewChild('doneCheckBox') 
+  @ViewChild('doneCheckBox')
   checkBoxElement!: ElementRef<HTMLSpanElement>;
 
-  @Output('deleteTask') 
+  @Output('deleteTask')
   deleteTask = new EventEmitter<Todo>();
 
-  @Output('editTaskDoneStatus') 
+  @Output('editTaskDoneStatus')
   editTaskDoneStatus = new EventEmitter<TodoEditDoneStatus>();
 
   CHECKBOX_COLOR_DONE: string = 'rgb(79, 159, 67)';
@@ -29,7 +29,7 @@ export class TodoItemComponentComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  
+
   emitTaskToDelete(){
     this.deleteTask.emit(this.todoTask);
   }

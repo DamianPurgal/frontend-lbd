@@ -1,5 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Todo } from './todo';
+import { Todo } from 'src/app/interfaces/todo';
+
 
 @Pipe({
   name: 'doneTasksFilter',

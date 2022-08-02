@@ -1,5 +1,5 @@
 import { Injectable, ViewChild } from '@angular/core';
-import { Todo } from './todo';
+import { Todo } from 'src/app/interfaces/todo';
 
 @Injectable({
   providedIn: 'root'
