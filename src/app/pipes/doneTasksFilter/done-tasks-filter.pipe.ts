@@ -8,10 +8,8 @@ import { Todo } from 'src/app/interfaces/todo';
 })
 export class DoneTasksFilterPipe implements PipeTransform {
 
-  transform(tasks: Todo[]): Todo[] {
-    return tasks.sort(function(a, b) {
-      return Number(a.done) - Number(b.done);
-   });
+  transform(tasks: Todo[], done: boolean): Todo[] {
+    return tasks.filter(task => task.done == done);
   }
 
 }

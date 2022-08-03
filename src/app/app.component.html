@@ -12,12 +12,27 @@
   </div>
 
   <div id="taskList">
-    <div id="taskListHeader">
+    <div class="taskListHeader">
       Lista zadań
     </div>
-    <mat-divider id="taskListHeaderDivider"></mat-divider>
+    <mat-divider class="taskListHeaderDivider"></mat-divider>
     <mat-list role="list">
-      <app-todo-item-component *ngFor="let element of getToDoList() | doneTasksFilter" [todoTask]="element" (editTaskDoneStatus)="onEditTaskDoneStatus($event)" (deleteTask)="onDeleteTask($event)" >
+      <app-todo-item-component *ngFor="let element of getToDoList() | doneTasksFilter:false" [todoTask]="element" (editTaskDoneStatus)="onEditTaskDoneStatus($event)" (deleteTask)="onDeleteTask($event)" >
+
+      </app-todo-item-component>
+    </mat-list>
+
+    <div *ngIf="(getToDoList() | doneTasksFilter:true).length > 0">
+      <div class="taskListHeader">
+        Zrobione
+      </div>
+      <div class="taskListHeaderDivider">
+        <mat-divider ></mat-divider>
+      </div>
+    </div>
+
+    <mat-list role="list">
+      <app-todo-item-component *ngFor="let element of getToDoList() | doneTasksFilter:true" [todoTask]="element" (editTaskDoneStatus)="onEditTaskDoneStatus($event)" (deleteTask)="onDeleteTask($event)" >
 
       </app-todo-item-component>
     </mat-list>
