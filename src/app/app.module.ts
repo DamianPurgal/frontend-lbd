@@ -12,13 +12,15 @@ import {MatIconModule} from '@angular/material/icon';
 import { TodoTooltipDirective } from './directives/todoTooltip/todo-tooltip.directive';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { DoneTasksFilterPipe } from './pipes/doneTasksFilter/done-tasks-filter.pipe';
+import { NotificationComponent } from './notification/notification.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TodoItemComponentComponent,
     DoneTasksFilterPipe,
-    TodoTooltipDirective
+    TodoTooltipDirective,
+    NotificationComponent
   ],
   imports: [
     BrowserModule,

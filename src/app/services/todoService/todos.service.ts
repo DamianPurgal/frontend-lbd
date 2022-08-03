@@ -10,8 +10,9 @@ export class TodosService {
   addTask(task: Todo){
     if(this.isTaskCorrect(task)){
       this.tasks.push(task);
+      return true;
     }else{
-      return;
+      return false;
     }
   }
 
@@ -46,6 +47,9 @@ export class TodosService {
       return false;
     }
     if(task.name == undefined){
+      return false;
+    }
+    if(task.name.length < 5){
       return false;
     }
     return true;
