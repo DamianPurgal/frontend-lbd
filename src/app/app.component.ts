@@ -1,8 +1,9 @@
 import { animate, style, transition, trigger } from '@angular/animations';
-import { Component, ElementRef, ViewChild, ViewContainerRef } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { Todo } from './interfaces/todo';
 import { TodoEditDoneStatus } from './interfaces/todo-edit-done-status';
 import { NotificationComponent } from './notification/notification.component';
+import { NotificationService } from './services/notificationService/notification.service';
 import { TodosService } from './services/todoService/todos.service';
 
 @Component({
@@ -20,7 +21,7 @@ import { TodosService } from './services/todoService/todos.service';
     )
   ]
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   title = 'frontend-lbd';
 
   @ViewChild('newTaskInput')
@@ -28,6 +29,10 @@ export class AppComponent {
 
   @ViewChild('notificationContainer', {read: ViewContainerRef, static:true})
   private notificationContainer!: ViewContainerRef;
+
+  ngOnInit(): void {
+    this.notificationService.setContainer(this.notificationContainer);
+  }
 
   addTaskToList(){
     let newTask: Todo = {
@@ -41,11 +46,10 @@ export class AppComponent {
     console.log(this.todoService.getToDoList());
 
     if(result){
-      this.addNotification(true, "Sukces!", "Dodano zadanie.");
+      this.notificationService.addNotification(true, "Sukces!", "Dodano zadanie.");
     }else{
-      this.addNotification(false, "Błąd!", "Niepoprawne zadanie. Długość zadania musi być większa od 5.");
+      this.notificationService.addNotification(false, "Błąd!", "Niepoprawne zadanie. Długość zadania musi być większa od 5.");
     }
-
   }
 
   getToDoList(){
@@ -54,22 +58,13 @@ export class AppComponent {
 
   onDeleteTask(taskToDelete: Todo){
     this.todoService.removeTask(taskToDelete);
-    this.addNotification(true, "Sukces!", "Usunięto zadanie.");
+    this.notificationService.addNotification(true, "Sukces!", "Usunięto zadanie.");
   }
 
   onEditTaskDoneStatus(taskToEdit: TodoEditDoneStatus){
     this.todoService.setTaskDoneStatus(taskToEdit.todoElement, taskToEdit.done, taskToEdit.doneCreated);
-    this.addNotification(true, "Sukces!", "Zmieniono status zadania.");
+    this.notificationService.addNotification(true, "Sukces!", "Zmieniono status zadania.");
   }
 
-  addNotification(success: boolean, header: string, message: string){
-    const notificationRef = this.notificationContainer.createComponent(
-      NotificationComponent
-    );
-    notificationRef.instance.header = header;
-    notificationRef.instance.message = message;
-    notificationRef.instance.success = success;
-  }
-
-  constructor(private todoService: TodosService){}
+  constructor(private todoService: TodosService, private notificationService: NotificationService){}
 }

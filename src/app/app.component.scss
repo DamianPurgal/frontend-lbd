@@ -50,4 +50,7 @@
   position:fixed;
   right:1%;
   top:1%;
+  max-height:800px;
+  overflow: scroll;
+  scrollbar-width: none;
 }

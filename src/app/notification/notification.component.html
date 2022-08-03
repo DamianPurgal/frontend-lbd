@@ -1,10 +1,13 @@
 <div class="notificationContainer" *ngIf="success; else errorNotification" style="background-color: rgba(63, 139, 9, 0.842)">
   <div class="notificationContainerIcon">
-    <mat-icon aria-hidden="false" aria-label="remove checkbox" fontIcon="done" class="notificationIcon" matTooltip="usun zadanie" matTooltipPosition="right"></mat-icon>
+    <mat-icon aria-hidden="false" aria-label="remove checkbox" fontIcon="done" class="notificationIcon" matTooltipPosition="right"></mat-icon>
   </div>
   <div class="notificationContainerContent">
     <div class="notificationContentHeader">
+      <div class="notificationContentHeaderText">
         {{header}}
+      </div>
+      <mat-icon aria-hidden="false" aria-label="remove checkbox" fontIcon="arrow_forward_ios" class="notificationContentHeaderExitIcon" matTooltip="Schowaj" matTooltipPosition="below"></mat-icon>
     </div>
     <div class="divider">
 
@@ -18,11 +21,14 @@
 <ng-template #errorNotification>
   <div class="notificationContainer" style="background-color: rgb(228, 54, 31);">
     <div class="notificationContainerIcon">
-      <mat-icon aria-hidden="false" aria-label="remove checkbox" fontIcon="priority_high" class="notificationIcon" matTooltip="usun zadanie" matTooltipPosition="right"></mat-icon>
+      <mat-icon aria-hidden="false" aria-label="remove checkbox" fontIcon="priority_high" class="notificationIcon" matTooltipPosition="right"></mat-icon>
     </div>
     <div class="notificationContainerContent">
       <div class="notificationContentHeader">
-        {{header}}
+        <div class="notificationContentHeaderText">
+          {{header}}
+        </div>
+        <mat-icon aria-hidden="false" aria-label="remove checkbox" fontIcon="arrow_forward_ios" class="notificationContentHeaderExitIcon" matTooltip="Schowaj" matTooltipPosition="below"></mat-icon>
       </div>
       <div class="divider">
 
