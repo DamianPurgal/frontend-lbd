@@ -43,6 +43,13 @@
 }
 #removeIcon{
     font-size:26px;
-    color:rgb(199, 61, 61);
+    color:rgb(195, 52, 52);
     cursor:pointer;
+    transition: 0.5s;
 }
+#removeIcon:hover{
+  font-size:26px;
+  color:rgb(240, 48, 48);
+  cursor:pointer;
+}
+
