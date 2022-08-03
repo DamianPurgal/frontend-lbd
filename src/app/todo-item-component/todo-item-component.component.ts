@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { Todo } from '../interfaces/todo';
 import { TodoEditDoneStatus } from '../interfaces/todo-edit-done-status';
 
@@ -7,7 +7,7 @@ import { TodoEditDoneStatus } from '../interfaces/todo-edit-done-status';
   templateUrl: './todo-item-component.component.html',
   styleUrls: ['./todo-item-component.component.scss']
 })
-export class TodoItemComponentComponent implements OnInit {
+export class TodoItemComponentComponent implements OnInit, AfterViewInit {
 
   @Input() todoTask!: Todo;
 
@@ -28,6 +28,14 @@ export class TodoItemComponentComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  ngAfterViewInit(): void {
+    if(this.todoTask.done){
+      this.checkBoxElement.nativeElement.style.backgroundColor = this.CHECKBOX_COLOR_DONE;
+    }else{
+      this.checkBoxElement.nativeElement.style.backgroundColor = this.CHECKBOX_COLOR_NOT_DONE;
+    }
   }
 
   emitTaskToDelete(){
