@@ -17,12 +17,12 @@
     </div>
     <mat-divider class="taskListHeaderDivider"></mat-divider>
     <mat-list role="list">
-      <app-todo-item-component *ngFor="let element of getToDoList() | doneTasksFilter:false" [todoTask]="element" (editTaskDoneStatus)="onEditTaskDoneStatus($event)" (deleteTask)="onDeleteTask($event)" >
+      <app-todo-item-component [@enterAnimation] *ngFor="let element of getToDoList() | doneTasksFilter:false" [todoTask]="element" (editTaskDoneStatus)="onEditTaskDoneStatus($event)" (deleteTask)="onDeleteTask($event)" >
 
       </app-todo-item-component>
     </mat-list>
 
-    <div *ngIf="(getToDoList() | doneTasksFilter:true).length > 0">
+    <div *ngIf="(getToDoList() | doneTasksFilter:true).length > 0" [@enterAnimation]>
       <div class="taskListHeader">
         Zrobione
       </div>
@@ -32,7 +32,7 @@
     </div>
 
     <mat-list role="list">
-      <app-todo-item-component *ngFor="let element of getToDoList() | doneTasksFilter:true" [todoTask]="element" (editTaskDoneStatus)="onEditTaskDoneStatus($event)" (deleteTask)="onDeleteTask($event)" >
+      <app-todo-item-component [@enterAnimation] *ngFor="let element of getToDoList() | doneTasksFilter:true" [todoTask]="element" (editTaskDoneStatus)="onEditTaskDoneStatus($event)" (deleteTask)="onDeleteTask($event)" >
 
       </app-todo-item-component>
     </mat-list>
