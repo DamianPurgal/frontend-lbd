@@ -1,5 +1,8 @@
 import { animate, style, transition, trigger } from '@angular/animations';
-import { Component, ComponentRef, ElementRef, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { Overlay, OverlayRef } from '@angular/cdk/overlay';
+import { ComponentPortal, PortalInjector, TemplatePortal } from '@angular/cdk/portal';
+import { Component, ComponentRef, ElementRef, Injector, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { config } from 'rxjs';
 import { Todo } from './interfaces/todo';
 import { TodoEditDoneStatus } from './interfaces/todo-edit-done-status';
 import { NotificationComponent} from './notification/notification.component';
@@ -28,11 +31,13 @@ export class AppComponent implements OnInit{
   @ViewChild('newTaskInput')
   newTaskInputElement!: ElementRef<HTMLInputElement>;
 
-  @ViewChild('notificationContainer', {read: ViewContainerRef, static:true})
-  private notificationContainer!: ViewContainerRef;
+  private overlayRef!: OverlayRef;
 
   ngOnInit(): void {
-    this.notificationService.setContainer(this.notificationContainer);
+    this.overlayRef = this.overlay.create({
+      positionStrategy: this.overlay.position().global().right().top(),
+      hasBackdrop: false
+    });
   }
 
   addTaskToList(){
@@ -47,9 +52,9 @@ export class AppComponent implements OnInit{
     console.log(this.todoService.getToDoList());
 
     if(result){
-      this.notificationService.addNotification(NotificationType.SUCCESS, "Sukces!", "Dodano zadanie.");
+      this.notificationService.addNotification(NotificationType.SUCCESS, "Sukces!", "Dodano zadanie.", this.overlayRef);
     }else{
-      this.notificationService.addNotification(NotificationType.ERROR, "Błąd!", "Niepoprawne zadanie. Długość zadania musi być większa od 5.");
+      this.notificationService.addNotification(NotificationType.ERROR, "Błąd!", "Niepoprawne zadanie. Długość zadania musi być większa od 5.", this.overlayRef);
     }
   }
 
@@ -59,13 +64,13 @@ export class AppComponent implements OnInit{
 
   onDeleteTask(taskToDelete: Todo){
     this.todoService.removeTask(taskToDelete);
-    this.notificationService.addNotification(NotificationType.SUCCESS, "Sukces!", "Usunięto zadanie.");
+    this.notificationService.addNotification(NotificationType.SUCCESS, "Sukces!", "Usunięto zadanie.", this.overlayRef);
   }
 
   onEditTaskDoneStatus(taskToEdit: TodoEditDoneStatus){
     this.todoService.setTaskDoneStatus(taskToEdit.todoElement, taskToEdit.done, taskToEdit.doneCreated);
-    this.notificationService.addNotification(NotificationType.SUCCESS, "Sukces!", "Zmieniono status zadania.");
+    this.notificationService.addNotification(NotificationType.SUCCESS, "Sukces!", "Zmieniono status zadania.", this.overlayRef);
   }
 
-  constructor(private todoService: TodosService, private notificationService: NotificationService){}
+  constructor(private todoService: TodosService, private notificationService: NotificationService, private overlay: Overlay){}
 }

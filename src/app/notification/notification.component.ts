@@ -8,7 +8,13 @@ import { NotificationType } from './type/notification-type';
 })
 export class NotificationComponent implements OnInit {
 
-  constructor() { }
+  constructor() {}
+
+  setNotificationInfo(type: NotificationType, header: string, message: string){
+    this.type = type;
+    this.header = header;
+    this.message = message;
+  }
 
   @Input()
   type!: NotificationType;

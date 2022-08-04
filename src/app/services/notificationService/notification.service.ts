@@ -1,3 +1,5 @@
+import { OverlayRef } from '@angular/cdk/overlay';
+import { ComponentPortal } from '@angular/cdk/portal';
 import { ComponentRef, Injectable, ViewContainerRef } from '@angular/core';
 import { NotificationComponent} from 'src/app/notification/notification.component';
 import { NotificationType } from 'src/app/notification/type/notification-type';
@@ -7,24 +9,16 @@ import { NotificationType } from 'src/app/notification/type/notification-type';
 })
 export class NotificationService {
 
-  private notificationContainer!: ViewContainerRef;
+  addNotification(type: NotificationType, header: string, message: string, overlayRef: OverlayRef){
+    overlayRef.detach();
 
-  setContainer(notificationContainer: ViewContainerRef){
-    this.notificationContainer = notificationContainer;
-  }
-
-  addNotification(type: NotificationType, header: string, message: string){
-    const notificationRef = this.notificationContainer.createComponent(
-      NotificationComponent, {index: 0}
-    );
+    let notification = new ComponentPortal(NotificationComponent);
+    let notificationRef = overlayRef.attach(notification);
+    notificationRef.instance.type = type;
     notificationRef.instance.header = header;
     notificationRef.instance.message = message;
-    notificationRef.instance.type = type;
-    setTimeout(() => this.deleteNotification(notificationRef), 3500);
-  }
 
-  deleteNotification(notification: ComponentRef<NotificationComponent>){
-    notification.destroy();
+    setTimeout(() => overlayRef.detach(), 3500);
   }
 
   constructor() { }
