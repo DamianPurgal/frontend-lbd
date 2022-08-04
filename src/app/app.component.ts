@@ -1,8 +1,9 @@
 import { animate, style, transition, trigger } from '@angular/animations';
-import { Component, ElementRef, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { Component, ComponentRef, ElementRef, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { Todo } from './interfaces/todo';
 import { TodoEditDoneStatus } from './interfaces/todo-edit-done-status';
-import { NotificationComponent } from './notification/notification.component';
+import { NotificationComponent} from './notification/notification.component';
+import { NotificationType } from './notification/type/notification-type';
 import { NotificationService } from './services/notificationService/notification.service';
 import { TodosService } from './services/todoService/todos.service';
 
@@ -46,9 +47,9 @@ export class AppComponent implements OnInit{
     console.log(this.todoService.getToDoList());
 
     if(result){
-      this.notificationService.addNotification(true, "Sukces!", "Dodano zadanie.");
+      this.notificationService.addNotification(NotificationType.SUCCESS, "Sukces!", "Dodano zadanie.");
     }else{
-      this.notificationService.addNotification(false, "Błąd!", "Niepoprawne zadanie. Długość zadania musi być większa od 5.");
+      this.notificationService.addNotification(NotificationType.ERROR, "Błąd!", "Niepoprawne zadanie. Długość zadania musi być większa od 5.");
     }
   }
 
@@ -58,12 +59,12 @@ export class AppComponent implements OnInit{
 
   onDeleteTask(taskToDelete: Todo){
     this.todoService.removeTask(taskToDelete);
-    this.notificationService.addNotification(true, "Sukces!", "Usunięto zadanie.");
+    this.notificationService.addNotification(NotificationType.SUCCESS, "Sukces!", "Usunięto zadanie.");
   }
 
   onEditTaskDoneStatus(taskToEdit: TodoEditDoneStatus){
     this.todoService.setTaskDoneStatus(taskToEdit.todoElement, taskToEdit.done, taskToEdit.doneCreated);
-    this.notificationService.addNotification(true, "Sukces!", "Zmieniono status zadania.");
+    this.notificationService.addNotification(NotificationType.SUCCESS, "Sukces!", "Zmieniono status zadania.");
   }
 
   constructor(private todoService: TodosService, private notificationService: NotificationService){}

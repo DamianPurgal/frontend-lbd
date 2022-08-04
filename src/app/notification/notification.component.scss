@@ -1,5 +1,5 @@
 .notificationContainer{
-  width:250px;
+  width:260px;
   min-height:100px;
   border-radius: 5%;
   padding:5px;
@@ -7,8 +7,14 @@
   opacity:0.9;
   animation: fade-in 0.2s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
 }
+.errorNotification{
+  background-color: rgb(228, 54, 31);
+}
+.successNotification{
+  background-color: rgba(63, 139, 9, 0.842)
+}
 @keyframes fade-in {
-  0% { transform: translateX(10%); opacity: 0.3; }
+  0% { transform: translateX(15%); opacity: 0.3; }
   100% { transform: translateX(0); opacity: 1; }
  }
 .notificationContainerIcon{
@@ -16,6 +22,7 @@
   height:100%;
   display:inline-block;
   color:white;
+  margin-right:10px;
 }
 .notificationContainerContent{
   width:150px;
@@ -44,6 +51,7 @@
   display:inline-block;
   vertical-align: top;
   cursor: pointer;
+  display:none;
 }
 .divider{
   width: 130px;

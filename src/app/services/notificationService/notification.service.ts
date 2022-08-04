@@ -1,5 +1,6 @@
 import { ComponentRef, Injectable, ViewContainerRef } from '@angular/core';
-import { NotificationComponent } from 'src/app/notification/notification.component';
+import { NotificationComponent} from 'src/app/notification/notification.component';
+import { NotificationType } from 'src/app/notification/type/notification-type';
 
 @Injectable({
   providedIn: 'root'
@@ -12,14 +13,14 @@ export class NotificationService {
     this.notificationContainer = notificationContainer;
   }
 
-  addNotification(success: boolean, header: string, message: string){
+  addNotification(type: NotificationType, header: string, message: string){
     const notificationRef = this.notificationContainer.createComponent(
-      NotificationComponent
+      NotificationComponent, {index: 0}
     );
     notificationRef.instance.header = header;
     notificationRef.instance.message = message;
-    notificationRef.instance.success = success;
-    setTimeout(() => this.deleteNotification(notificationRef), 3000);
+    notificationRef.instance.type = type;
+    setTimeout(() => this.deleteNotification(notificationRef), 3500);
   }
 
   deleteNotification(notification: ComponentRef<NotificationComponent>){
