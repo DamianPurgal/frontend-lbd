@@ -31,13 +31,7 @@ export class AppComponent implements OnInit{
   @ViewChild('newTaskInput')
   newTaskInputElement!: ElementRef<HTMLInputElement>;
 
-  private overlayRef!: OverlayRef;
-
   ngOnInit(): void {
-    this.overlayRef = this.overlay.create({
-      positionStrategy: this.overlay.position().global().right().top(),
-      hasBackdrop: false
-    });
   }
 
   addTaskToList(){
@@ -52,9 +46,9 @@ export class AppComponent implements OnInit{
     console.log(this.todoService.getToDoList());
 
     if(result){
-      this.notificationService.addNotification(NotificationType.SUCCESS, "Sukces!", "Dodano zadanie.", this.overlayRef);
+      this.notificationService.addNotification(NotificationType.SUCCESS, "Sukces!", "Dodano zadanie.");
     }else{
-      this.notificationService.addNotification(NotificationType.ERROR, "Błąd!", "Niepoprawne zadanie. Długość zadania musi być większa od 5.", this.overlayRef);
+      this.notificationService.addNotification(NotificationType.ERROR, "Błąd!", "Niepoprawne zadanie. Długość zadania musi być większa od 5.");
     }
   }
 
@@ -64,13 +58,13 @@ export class AppComponent implements OnInit{
 
   onDeleteTask(taskToDelete: Todo){
     this.todoService.removeTask(taskToDelete);
-    this.notificationService.addNotification(NotificationType.SUCCESS, "Sukces!", "Usunięto zadanie.", this.overlayRef);
+    this.notificationService.addNotification(NotificationType.SUCCESS, "Sukces!", "Usunięto zadanie.");
   }
 
   onEditTaskDoneStatus(taskToEdit: TodoEditDoneStatus){
     this.todoService.setTaskDoneStatus(taskToEdit.todoElement, taskToEdit.done, taskToEdit.doneCreated);
-    this.notificationService.addNotification(NotificationType.SUCCESS, "Sukces!", "Zmieniono status zadania.", this.overlayRef);
+    this.notificationService.addNotification(NotificationType.SUCCESS, "Sukces!", "Zmieniono status zadania.");
   }
 
-  constructor(private todoService: TodosService, private notificationService: NotificationService, private overlay: Overlay){}
+  constructor(private todoService: TodosService, private notificationService: NotificationService){}
 }

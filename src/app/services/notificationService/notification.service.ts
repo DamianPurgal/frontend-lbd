@@ -1,6 +1,6 @@
-import { OverlayRef } from '@angular/cdk/overlay';
+import { Overlay, OverlayRef } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
-import { ComponentRef, Injectable, ViewContainerRef } from '@angular/core';
+import { ComponentRef, Injectable, OnInit, ViewContainerRef } from '@angular/core';
 import { NotificationComponent} from 'src/app/notification/notification.component';
 import { NotificationType } from 'src/app/notification/type/notification-type';
 
@@ -9,17 +9,35 @@ import { NotificationType } from 'src/app/notification/type/notification-type';
 })
 export class NotificationService {
 
-  addNotification(type: NotificationType, header: string, message: string, overlayRef: OverlayRef){
-    overlayRef.detach();
+  constructor(private overlay: Overlay) {
+    this.overlayRef = this.overlay.create({
+      positionStrategy: this.overlay.position().global().right().top(),
+      hasBackdrop: false
+    });
+  }
+
+  private overlayRef!: OverlayRef;
+
+  private clearWithTimeoutEvent?: any;
+
+  addNotification(type: NotificationType, header: string, message: string){
+
+    clearTimeout(this.clearWithTimeoutEvent);
+    this.overlayRef.detach();
 
     let notification = new ComponentPortal(NotificationComponent);
-    let notificationRef = overlayRef.attach(notification);
+    let notificationRef = this.overlayRef.attach(notification);
     notificationRef.instance.type = type;
     notificationRef.instance.header = header;
     notificationRef.instance.message = message;
 
-    setTimeout(() => overlayRef.detach(), 3500);
+    this.clearWithTimeoutEvent = setTimeout(() => {
+      if(notificationRef != undefined){
+        this.overlayRef.detach();
+      }
+    }, 3500);
+
   }
 
-  constructor() { }
+
 }
