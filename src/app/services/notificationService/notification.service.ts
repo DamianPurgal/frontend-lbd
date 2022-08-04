@@ -1,6 +1,6 @@
 import { Overlay, OverlayRef } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
-import { ComponentRef, Injectable, OnInit, ViewContainerRef } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { NotificationComponent} from 'src/app/notification/notification.component';
 import { NotificationType } from 'src/app/notification/type/notification-type';
 
@@ -32,9 +32,7 @@ export class NotificationService {
     notificationRef.instance.message = message;
 
     this.clearWithTimeoutEvent = setTimeout(() => {
-      if(notificationRef != undefined){
         this.overlayRef.detach();
-      }
     }, 3500);
 
   }

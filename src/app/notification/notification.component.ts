@@ -1,4 +1,4 @@
-import { Component, ComponentRef, destroyPlatform, ElementRef, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { NotificationType } from './type/notification-type';
 
 @Component({
