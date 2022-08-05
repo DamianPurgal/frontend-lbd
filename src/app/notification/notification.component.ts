@@ -6,15 +6,7 @@ import { NotificationType } from './type/notification-type';
   templateUrl: './notification.component.html',
   styleUrls: ['./notification.component.scss']
 })
-export class NotificationComponent implements OnInit {
-
-  constructor() {}
-
-  setNotificationInfo(type: NotificationType, header: string, message: string){
-    this.type = type;
-    this.header = header;
-    this.message = message;
-  }
+export class NotificationComponent {
 
   @Input()
   type!: NotificationType;
@@ -27,7 +19,11 @@ export class NotificationComponent implements OnInit {
 
   NotificationTypes = NotificationType;
 
-  ngOnInit(): void {
-  }
+  constructor() {}
 
+  setNotificationInfo(type: NotificationType, header: string, message: string){
+    this.type = type;
+    this.header = header;
+    this.message = message;
+  }
 }

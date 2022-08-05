@@ -11,7 +11,7 @@ export class TodoTooltipDirective {
 
   @Input() done!: boolean;
 
-  constructor(private elementRef: ElementRef, private tooltip: MatTooltip) { }
+  constructor(private tooltip: MatTooltip) { }
 
   @HostListener('mouseover') mouseover() {
     if(this.done == true){
@@ -23,8 +23,8 @@ export class TodoTooltipDirective {
       }
       this.tooltip.show();
     }
-
 }
+
   @HostListener('mouseleave') mouseleave() {
       this.tooltip.hide();
   }

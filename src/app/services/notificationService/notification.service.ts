@@ -9,6 +9,10 @@ import { NotificationType } from 'src/app/notification/type/notification-type';
 })
 export class NotificationService {
 
+  private overlayRef!: OverlayRef;
+
+  private clearWithTimeoutEvent?: any;
+
   constructor(private overlay: Overlay) {
     this.overlayRef = this.overlay.create({
       positionStrategy: this.overlay.position().global().right().top(),
@@ -16,9 +20,6 @@ export class NotificationService {
     });
   }
 
-  private overlayRef!: OverlayRef;
-
-  private clearWithTimeoutEvent?: any;
 
   addNotification(type: NotificationType, header: string, message: string){
 
@@ -34,8 +35,5 @@ export class NotificationService {
     this.clearWithTimeoutEvent = setTimeout(() => {
         this.overlayRef.detach();
     }, 3500);
-
   }
-
-
 }

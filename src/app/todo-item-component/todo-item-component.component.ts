@@ -7,7 +7,12 @@ import { TodoEditDoneStatus } from '../interfaces/todo-edit-done-status';
   templateUrl: './todo-item-component.component.html',
   styleUrls: ['./todo-item-component.component.scss']
 })
-export class TodoItemComponentComponent implements OnInit, AfterViewInit {
+export class TodoItemComponentComponent implements AfterViewInit {
+
+  readonly CHECKBOX_COLOR_DONE: string = 'rgb(79, 159, 67)';
+  readonly CHECKBOX_COLOR_NOT_DONE: string = 'white';
+  readonly CHECKBOX_COLOR_DONE_HOVER: string = 'orange';
+  readonly CHECKBOX_COLOR_NOT_DONE_HOVER: string = 'skyblue';
 
   @Input() todoTask!: Todo;
 
@@ -20,15 +25,7 @@ export class TodoItemComponentComponent implements OnInit, AfterViewInit {
   @Output('editTaskDoneStatus')
   editTaskDoneStatus = new EventEmitter<TodoEditDoneStatus>();
 
-  CHECKBOX_COLOR_DONE: string = 'rgb(79, 159, 67)';
-  CHECKBOX_COLOR_NOT_DONE: string = 'white';
-  CHECKBOX_COLOR_DONE_HOVER: string = 'orange';
-  CHECKBOX_COLOR_NOT_DONE_HOVER: string = 'skyblue';
-
   constructor() { }
-
-  ngOnInit(): void {
-  }
 
   ngAfterViewInit(): void {
     if(this.todoTask.done){

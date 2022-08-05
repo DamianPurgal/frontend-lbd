@@ -7,6 +7,8 @@ import { Todo } from 'src/app/interfaces/todo';
 export class TodosService {
   private tasks: Todo[] = [];
 
+  constructor() { }
+
   addTask(task: Todo){
     if(this.isTaskCorrect(task)){
       this.tasks.push(task);
@@ -54,5 +56,4 @@ export class TodosService {
     }
     return true;
   }
-  constructor() { }
 }

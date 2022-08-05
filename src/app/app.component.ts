@@ -1,11 +1,7 @@
 import { animate, style, transition, trigger } from '@angular/animations';
-import { Overlay, OverlayRef } from '@angular/cdk/overlay';
-import { ComponentPortal, PortalInjector, TemplatePortal } from '@angular/cdk/portal';
-import { Component, ComponentRef, ElementRef, Injector, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
-import { config } from 'rxjs';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Todo } from './interfaces/todo';
 import { TodoEditDoneStatus } from './interfaces/todo-edit-done-status';
-import { NotificationComponent} from './notification/notification.component';
 import { NotificationType } from './notification/type/notification-type';
 import { NotificationService } from './services/notificationService/notification.service';
 import { TodosService } from './services/todoService/todos.service';
@@ -22,17 +18,17 @@ import { TodosService } from './services/todoService/todos.service';
           animate('120ms', style({transform: 'translateX(0)', opacity: 1}))
         ])
       ]
-    )
-  ]
-})
-export class AppComponent implements OnInit{
+      )
+    ]
+  })
+export class AppComponent{
+
   title = 'frontend-lbd';
 
   @ViewChild('newTaskInput')
-  newTaskInputElement!: ElementRef<HTMLInputElement>;
+  private newTaskInputElement!: ElementRef<HTMLInputElement>;
 
-  ngOnInit(): void {
-  }
+  constructor(private todoService: TodosService, private notificationService: NotificationService){}
 
   addTaskToList(){
     let newTask: Todo = {
@@ -65,6 +61,4 @@ export class AppComponent implements OnInit{
     this.todoService.setTaskDoneStatus(taskToEdit.todoElement, taskToEdit.done, taskToEdit.doneCreated);
     this.notificationService.addNotification(NotificationType.SUCCESS, "Sukces!", "Zmieniono status zadania.");
   }
-
-  constructor(private todoService: TodosService, private notificationService: NotificationService){}
 }
